@@ -20,17 +20,9 @@
     },
     "web_accessible_resources": [
         {
-            "resources": ["standalone.html", "popup.js", "styles.css"],
+            "resources": ["popup.js", "styles.css"],
             "matches": ["<all_urls>"]
         }
     ],
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+N",
-                "mac": "Command+Shift+N"
-            },
-            "description": "Abrir Bloco de Notas Pro"
-        }
-    }
+    "commands": {}
 }

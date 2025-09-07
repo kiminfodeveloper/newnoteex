@@ -362,14 +362,30 @@ class NotesApp {
             }
         } else {
             titleInput.value = "";
-            contentTextarea.value = "";
-            categorySelect.value = "";
+            categorySelect.innerHTML = `
+            <option value="">Selecione uma categoria</option>
+            <option value="email">📧 E-mail</option>
+            <option value="call">📞 Ligação</option>
+            <option value="free">📝 Nota Livre</option>
+        `;
+            categorySelect.value = "free"; // Default to free note
             dateSpan.textContent = "Nova nota";
             charCount.textContent = "0 caracteres";
             pinBtn.innerHTML = "<span>📍</span>";
             pinBtn.title = "Fixar nota";
             pinBtn.classList.remove("active");
             deleteBtn.style.display = "none";
+
+            // Add predefined templates for email and call notes
+            categorySelect.addEventListener("change", (e) => {
+                if (e.target.value === "call") {
+                    contentTextarea.value = `Contrato: \nEmpresa/CNPJ: \nInterlocutor: \n\nColaborador: \n\nMotivo: \n\nData: ${new Date().toLocaleDateString()}\n\nResolução: \n\nProtocolo FVS: `;
+                } else if (e.target.value === "email") {
+                    contentTextarea.value = `Contrato: \nEmpresa/CNPJ: \nInterlocutor: \n\nColaborador: \n\nMotivo: \n\nData: ${new Date().toLocaleDateString()}\n\nResolução: \n\nProtocolo OMNI: \nProtocolo FVS: `;
+                } else {
+                    contentTextarea.value = ""; // Clear for other categories
+                }
+            });
         }
 
         modal.style.display = "flex";
@@ -525,21 +541,6 @@ class NotesApp {
 
         // Clear file input
         document.getElementById("importFile").value = "";
-    }
-
-    openInNewWindow() {
-        // Open standalone.html in a new tab
-        const url = chrome.runtime.getURL("standalone.html");
-        chrome.tabs.create(
-            {
-                url: url,
-                active: true,
-            },
-            () => {
-                // Close the popup after opening the new tab
-                window.close();
-            }
-        );
     }
 }
 
