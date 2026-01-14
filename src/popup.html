@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco de Notas Pro</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="app" class="theme-light">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">
+                <span class="logo-icon">📝</span>
+                Notey Pro
+            </h1>
+            <div class="header-controls">
+                <select id="themeSelector" class="theme-selector" title="Mudar tema">
+                    <option value="light">☀️ Light</option>
+                    <option value="dark">🌙 Dark</option>
+                    <option value="bluemoon">🌌 BlueMoon</option>
+                </select>
+                <button id="exportBtn" class="btn-icon" title="Exportar Backup">
+                    <span>📤</span>
+                </button>
+                <button id="importBtn" class="btn-icon" title="Importar Backup">
+                    <span>📥</span>
+                </button>
+                <input type="file" id="importFile" accept=".json" style="display: none">
+            </div>
+        </header>
+
+        <!-- Search & Filters -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Pesquisar em suas notas..." class="search-input">
+            <button id="clearSearch" class="btn-clear" title="Limpar busca">✕</button>
+        </div>
+
+        <div class="filters-wrapper">
+            <select id="categoryFilter" class="category-filter">
+                <option value="">📁 Todas as categorias</option>
+                <option value="trabalho">🏢 Trabalho</option>
+                <option value="pessoal">👤 Pessoal</option>
+                <option value="estudos">📚 Estudos</option>
+                <option value="ideias">💡 Ideias</option>
+                <option value="tarefas">✅ Tarefas</option>
+            </select>
+        </div>
+
+        <!-- Notes Container -->
+        <main id="notesContainer" class="notes-container">
+            <!-- Dynamic Content -->
+        </main>
+
+        <!-- FAB (Add Button) -->
+        <button id="addNoteBtn" class="btn-add-note" title="Nova Nota">
+            <span>+</span>
+        </button>
+
+        <!-- Note Editor Modal -->
+        <div id="noteModal" class="modal" style="display: none">
+            <div class="modal-content">
+                <div class="modal-header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <select id="noteCategory" class="note-category-select">
+                        <option value="free">📝 Nota Livre</option>
+                        <option value="trabalho">🏢 Trabalho</option>
+                        <option value="pessoal">👤 Pessoal</option>
+                        <option value="estudos">📚 Estudos</option>
+                        <option value="ideias">💡 Ideias</option>
+                        <option value="tarefas">✅ Tarefas</option>
+                        <option value="email">📧 E-mail</option>
+                        <option value="call">📞 Ligação</option>
+                    </select>
+                    <div style="display: flex; gap: 8px;">
+                        <button id="pinNoteBtn" class="btn-icon" title="Fixar Nota">📍</button>
+                        <button id="closeModal" class="btn-icon" style="background: transparent; border: none; font-size: 1.2rem;">✕</button>
+                    </div>
+                </div>
+                
+                <input type="text" id="noteTitle" placeholder="Título da nota..." class="note-title-input">
+                <textarea id="noteContent" placeholder="Comece a escrever aqui..." class="note-textarea"></textarea>
+                
+                <div class="modal-actions">
+                    <button id="deleteNoteBtn" class="btn-delete">Excluir</button>
+                    <div style="display: flex; gap: 8px;">
+                        <button id="copyNoteBtn" class="btn-save" style="background: var(--bg-app); color: var(--text-main);">Copiar</button>
+                        <button id="saveNoteBtn" class="btn-save">Salvar Nota</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modules -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
